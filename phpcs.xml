@@ -6,6 +6,7 @@
     <description>The coding standard for PHP_CodeSniffer itself.</description>
     <file>src</file>
     <exclude-pattern>*/Tests/*</exclude-pattern>
+    <exclude-pattern>/src/Kernel.php</exclude-pattern>
     <exclude-pattern>*/Resources/*</exclude-pattern>
 
     <arg value="np"/>
