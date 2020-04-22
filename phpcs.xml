@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="colors" />
+    <description>The coding standard for PHP_CodeSniffer itself.</description>
+    <file>src</file>
+    <exclude-pattern>*/Tests/*</exclude-pattern>
+    <exclude-pattern>*/Resources/*</exclude-pattern>
+
+    <arg value="np"/>
+
+    <rule ref="Doctrine">
+        <!-- Don't fix automagically: https://github.com/slevomat/coding-standard/issues/353 -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint" phpcbf-only="true" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint" phpcbf-only="true" />
+        <exclude name="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" phpcbf-only="true" />
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
+
+        <!-- Allow multiline for cleaner git commits -->
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
+        <exclude name="Squiz.WhiteSpace.SemicolonSpacing"/>
+
+        <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit">
+            <properties>
+                <property name="ignoreOneLineTrailingIf" value="true" />
+            </properties>
+        </rule>
+    </rule>
+    <rule ref="Squiz.Classes.SelfMemberReference"/>
+
+    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration" />
+    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction" />
+    <rule ref="SlevomatCodingStandard.Classes.PropertySpacing">
+        <properties>
+            <property name="maxLinesCountBeforeWithoutComment" value="0" />
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Functions.StrictCall" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+        <type>warning</type>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+        <type>warning</type>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.ClassStructure" />
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+        <type>warning</type>
+        <properties>
+            <property name="enableNativeTypeHint" value="false" />
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch" />
+    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenComments">
+        <properties>
+            <property name="forbiddenCommentPatterns" type="array">
+                <element value="~^(?:(?!private|protected|static)\S+ )?(?:con|de)structor\.\z~i"/>
+                <element value="~^(User|Date|Time): \S+\z~i"/>
+                <element value="~^Created by \S+\.\z~i"/>
+                <element value="~^\S+ [gs]etter\.\z~i"/>
+                <element value="~^Returns \S+\z~i" />
+                <element value="~^Sets \S+\z~i" />
+                <element value="~^Set \S+\z~i" />
+                <element value="~^Set \S+\.\z~i" />
+                <element value="~^Get \S+\z~i" />
+                <element value="~^Get \S+\.\z~i" />
+                <element value="~^Remove \S+\z~i" />
+                <element value="~^Constructor~i" />
+                <element value="~^Trait \S+\z~i" />
+                <element value="~^Class \S+\z~i" />
+                <element value="~^Interface \S+\z~i" />
+                <element value="~^Config options.\z~i"/>
+                <element value="~^\S+ field.\z~i"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <property name="linesCountBeforeFirstContent" value="0" />
+            <property name="linesCountAfterLastContent" value="0" />
+            <property name="linesCountBetweenAnnotationsGroups" value="1" />
+            <property name="annotationsGroups" type="array">
+                <element value="
+                        @internal,
+                        @deprecated,
+                    "/>
+                <element value="
+                        @link,
+                        @see,
+                        @uses,
+                        @var
+                    "/>
+                <element value="
+                        @ORM\,
+                        @UniqueEntity,
+                        @ODM\,
+                        @Gedmo\,
+                        @Assert\,
+                        @Route,
+                        @Cache,
+                        @Security,
+                        @Entity,
+                        @ParamConverter
+                    "/>
+                <element value="
+                        @Api\,
+                        @Serializer\
+                    "/>
+                <element value="@param"/>
+                <element value="@return"/>
+                <element value="@throws"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint" />
+    <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment" />
+    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment">
+        <properties>
+            <property
+                    name="usefulAnnotations"
+                    type="array"
+                    value="
+                    @Assert\,
+                    @after,
+                    @see,
+                    @before,
+                    @deprecated,
+                    @required,
+                    @ORM\,
+                    @Route,
+                    @Method,
+                    @IsGranted,
+                    @throws
+                "
+            />
+        </properties>
+    </rule>
+</ruleset>

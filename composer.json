@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/console": "5.0.*",
@@ -12,6 +12,12 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "doctrine/coding-standard": "^7.0",
+        "roave/security-advisories": "dev-master",
+        "sensiolabs/security-checker": "^6.0",
+        "sllh/composer-versions-check": "^2.0",
+        "squizlabs/php_codesniffer": "^3.1",
+        "symfony/maker-bundle": "^1.15"
     },
     "config": {
         "preferred-install": {
@@ -41,13 +47,18 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "style": "vendor/bin/phpcs src/",
+        "style-fix": [
+            "vendor/bin/phpcbf src/"
         ]
     },
     "conflict": {
