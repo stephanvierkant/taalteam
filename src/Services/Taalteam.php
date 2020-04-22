@@ -30,7 +30,7 @@ class Taalteam
         $feed = new Feed();
         $feed->setTitle("Spraakmakers' Taalteam");
         $feed->setDateModified(time());
-        $feed->setLink('https://stephanvierkant.nl/taalteam.xml');
+        $feed->setLink('https://taalteam.stephanvierkant.nl/feed.xml');
         $feed->setDescription('Taalteam');
         $feed->setCopyright('NPO Radio 1, KRO-NRCV');
 
