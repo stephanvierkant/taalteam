@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Generator;
 use Laminas\Feed\Writer\Entry;
 use Laminas\Feed\Writer\Feed;
-use LogicException;
 use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
@@ -45,20 +43,14 @@ class Taalteam
         return $feed->export('rss');
     }
 
-    private function getUrls() : Generator
+    private function getUrls() : array
     {
         $crawler = $this->getCrawler('/spraakmakers');
 
-        $items = $crawler
+        return $crawler
             ->filter('.broadcast-item a')
             ->reduce(static fn (Crawler $node, $i) => strpos($node->text(), 'Taalteam') !== false)
-        ;
-
-        foreach ($items as $item) {
-            $a = $item->attributes->item(0);
-
-            yield $a->nodeValue;
-        }
+            ->each(static fn (Crawler $node, $i) => $node->attr('href'));
     }
 
     private function getEntry(Feed $feed, Crawler $crawler) : Entry
@@ -78,13 +70,10 @@ class Taalteam
             ->filter('source')
             ->reduce(static fn (Crawler $node, $i) => $node->attr('type') === $format)
             ->reduce(static fn (Crawler $node, $i) => $node->attr('src') !== '/')
+            ->each(static fn (Crawler $node, $i) => $node->attr('src'))
         ;
 
-        foreach ($sources as $source) {
-            return $source->attributes->item(0)->nodeValue;
-        }
-
-        throw new LogicException('Niets gevonden!');
+        return $sources[0];
     }
 
     private function getCrawler(string $url) : Crawler
