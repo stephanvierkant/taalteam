@@ -32,6 +32,8 @@ class CreateFeedCommand extends Command
     {
         $this->taalteam->writeXML();
 
+        $output->writeln('Done!');
+
         return 0;
     }
 }

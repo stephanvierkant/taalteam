@@ -17,10 +17,17 @@ class Taalteam
 {
     public const BASEURL = 'https://www.nporadio1.nl';
 
+    private string $projectDir;
+
+    public function __construct(string $projectDir)
+    {
+        $this->projectDir = $projectDir;
+    }
+
     public function writeXML() : void
     {
         $filesystem = new Filesystem();
-        $filesystem->dumpFile('public/feed.xml', $this->generateXML());
+        $filesystem->dumpFile($this->projectDir . '/public/feed.xml', $this->generateXML());
     }
 
     private function generateXML()
