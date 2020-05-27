@@ -68,7 +68,7 @@ class Taalteam
         return $feed->createEntry()
             ->setTitle($title)
             ->setDescription($description)
-            ->setLink('https:' . $this->getFilename($crawler));
+            ->setLink($this->getFilename($crawler));
     }
 
     private function getFilename(Crawler $page, string $format = 'audio/mp3') : string
