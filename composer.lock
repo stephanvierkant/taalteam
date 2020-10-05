@@ -2589,20 +2589,21 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v5.0.10",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "b87e3aeedb74ee2694932d04153df9d804954cc3"
+                "reference": "8b858508e49beb257fd635104c3d449a8113e8fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/b87e3aeedb74ee2694932d04153df9d804954cc3",
-                "reference": "b87e3aeedb74ee2694932d04153df9d804954cc3",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/8b858508e49beb257fd635104c3d449a8113e8fe",
+                "reference": "8b858508e49beb257fd635104c3d449a8113e8fe",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5"
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.15"
             },
             "require-dev": {
                 "symfony/var-dumper": "^4.4.9|^5.0.9"
@@ -2610,7 +2611,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -2659,7 +2660,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-07T15:38:39+00:00"
+            "time": "2020-09-08T14:19:54+00:00"
         },
         {
             "name": "symfony/yaml",
