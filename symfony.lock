@@ -102,6 +102,9 @@
     "symfony/dependency-injection": {
         "version": "v5.0.7"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/dom-crawler": {
         "version": "v5.0.7"
     },
@@ -179,8 +182,14 @@
     "symfony/mime": {
         "version": "v5.0.7"
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.18.1"
+    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.15.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.18.1"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.15.0"
@@ -210,6 +219,9 @@
     },
     "symfony/service-contracts": {
         "version": "v2.0.1"
+    },
+    "symfony/string": {
+        "version": "v5.1.7"
     },
     "symfony/var-dumper": {
         "version": "v5.0.7"
