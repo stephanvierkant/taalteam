@@ -6,6 +6,8 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /public/feed.xml
+/public/diederik.xml
+/public/taalteam.xml
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
