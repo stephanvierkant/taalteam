@@ -11,12 +11,14 @@ use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 
+use Symfony\Component\VarDumper\VarDumper;
 use function strpos;
 
 class Scraper
 {
     public const BASEURL = 'https://www.nporadio1.nl';
-    public const PATH    = '';
+    protected string $path = '';
+    protected string $keyword = '';
 
     protected string $projectDir;
 
@@ -40,11 +42,11 @@ class Scraper
 
     protected function getUrls(): array
     {
-        $crawler = $this->getCrawler(self::PATH);
+        $crawler = $this->getCrawler($this->path);
 
         return $crawler
             ->filter('.broadcast-item a')
-            ->reduce(static fn (Crawler $node, $i) => strpos($node->text(), 'Taalteam') !== false)
+            ->reduce(fn (Crawler $node, $i) => strpos($node->text(), $this->keyword) !== false)
             ->each(static fn (Crawler $node, $i) => $node->attr('href'));
     }
 
