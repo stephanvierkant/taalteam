@@ -11,15 +11,13 @@ use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 
-use Symfony\Component\VarDumper\VarDumper;
 use function strpos;
 
 class Scraper
 {
-    public const BASEURL = 'https://www.nporadio1.nl';
-    protected string $path = '';
+    public const BASEURL      = 'https://www.nporadio1.nl';
+    protected string $path    = '';
     protected string $keyword = '';
-
     protected string $projectDir;
 
     public function __construct(string $projectDir)
@@ -54,10 +52,12 @@ class Scraper
     {
         $title       = $crawler->filterXpath("//meta[@property='og:title']")->extract(['content'])[0];
         $description = $crawler->filterXpath("//meta[@property='og:title']")->extract(['content'])[0];
+        $url         = $crawler->filterXpath("//meta[@property='og:url']")->extract(['content'])[0];
 
         return $feed->createEntry()
             ->setTitle($title)
             ->setDescription($description)
+            ->setId($url)
             ->setLink($this->getFilename($crawler));
     }
 
